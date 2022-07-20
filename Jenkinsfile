@@ -11,7 +11,7 @@ pipeline {
 		    -Dsonar.projectKey=MARFERJ \
 		    -Dsonar.sources=. \
 		    -Dsonar.host.url=http://ses000a108259:9000 \"
-        	}
+		}
         	timeout(time: 10, unit: 'MINUTES') {
             	waitForQualityGate abortPipeline: true
         	}
