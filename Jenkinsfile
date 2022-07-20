@@ -17,19 +17,19 @@ pipeline {
               steps {
                 // Wait for QuaityGate webhook result
                 timeout(time: 1, unit: 'HOURS') {
-		              waitForQualityGate abortPipeline: true
+		   waitForQualityGate abortPipeline: true
                 }
-	            }
 	      }
+	}
         stage('Paso Hola') {
               steps {
                 echo 'Hello Mundo!'
               }
-	      }
-	      stage('Ejecutar comandos') {
+	}
+	stage('Ejecutar comandos') {
               steps {
                   bat 'hostname'
-	            }
+	      }
         }
       }
     }
