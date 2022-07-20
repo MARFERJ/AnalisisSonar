@@ -10,7 +10,7 @@ pipeline {
         stage('SonarQube Analysis') {
           def scannerHome = tool 'SonarScanner';
           withSonarQubeEnv() {
-            sh "${scannerHome}/bin/sonar-scanner"
+            sh "${scannerHome}/sonar-scanner"
           }
         }
         stage ("Sonar: Espera a respuesta de Sonar por escaneo") {
