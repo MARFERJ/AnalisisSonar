@@ -10,6 +10,7 @@ pipeline {
             	bat '"%scannerHome%"sonar-scanner.bat \
 		    -Dsonar.projectKey=MARFERJ \
 		    -Dsonar.sources=. \
+		    -Dsonar.scm.exclusions.disabled=true \
 		    -Dsonar.host.url=http://ses000a108259:9000'
 		}
         	timeout(time: 10, unit: 'MINUTES') {
