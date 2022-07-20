@@ -1,26 +1,18 @@
 pipeline {
    agent any
    stages {
-	stage ('def sonar') {
-      	   node {
-         	stage ('SCM') {
-            	checkout scm
-           	}
-        	stage ('SonarQube Analysis') {
-          	   def scannerHome = tool 'SonarScanner';
-          	   withSonarQubeEnv() {
-            		sh "${scannerHome}/sonar-scanner"
-          	   }
+	stage('Sonarqube') {
+    	   environment {
+        	scannerHome = tool 'SonarScanner'
+    	   }
+    	   steps {
+        	withSonarQubeEnv('SonarServer') {
+            	sh "${scannerHome}/sonar-scanner"
         	}
-        	stage ("Sonar: Espera a respuesta de Sonar por escaneo") {
-              	   steps {
-                	// Wait for QuaityGate webhook result
-                	timeout(time: 1, unit: 'HOURS') {
-		   	   waitForQualityGate abortPipeline: true
-                	}
-	      	   }
-		}
-	    }
+        	timeout(time: 10, unit: 'MINUTES') {
+            	waitForQualityGate abortPipeline: true
+        	}
+    	   }
 	}
         stage ('Paso Hola') {
               steps {
