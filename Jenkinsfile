@@ -7,7 +7,7 @@ pipeline {
     	   }
     	   steps {
         	withSonarQubeEnv('SonarServer') {
-            	sh "${scannerHome}sonar-scanner"
+            	sh "${scannerHome}sonar-scanner.bat"
         	}
         	timeout(time: 10, unit: 'MINUTES') {
             	waitForQualityGate abortPipeline: true
