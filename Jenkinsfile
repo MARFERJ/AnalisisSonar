@@ -1,12 +1,12 @@
 pipeline {
-    agent any
-    stages {
-	stage ('definicion Sonar') {
-	    node {
-        	stage('SCM') {
-          	   checkout scm
-        	}
-        	stage('SonarQube Analysis') {
+   agent any
+   stages {
+	stage ('def sonar') {
+      	   node {
+         	stage ('SCM') {
+            	checkout scm
+           	}
+        	stage ('SonarQube Analysis') {
           	   def scannerHome = tool 'SonarScanner';
           	   withSonarQubeEnv() {
             		sh "${scannerHome}/sonar-scanner"
@@ -22,12 +22,12 @@ pipeline {
 		}
 	    }
 	}
-        stage('Paso Hola') {
+        stage ('Paso Hola') {
               steps {
                 echo 'Hello Mundo!'
               }
 	}
-	stage('Ejecutar comandos') {
+	stage ('Ejecutar comandos') {
               steps {
                   bat 'hostname'
 	      }
