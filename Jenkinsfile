@@ -7,10 +7,10 @@ pipeline {
     	   }
     	   steps {
         	withSonarQubeEnv('SonarServer') {
-            	bat "${"scannerHome"}sonar-scanner.bat \
+            	bat '"%SCANNER_HOME%"sonar-scanner.bat \
 		    -Dsonar.projectKey=MARFERJ \
 		    -Dsonar.sources=. \
-		    -Dsonar.host.url=http://ses000a108259:9000"
+		    -Dsonar.host.url=http://ses000a108259:9000'
 		}
         	timeout(time: 10, unit: 'MINUTES') {
             	waitForQualityGate abortPipeline: true
