@@ -7,7 +7,7 @@ pipeline {
     	   }
     	   steps {
         	withSonarQubeEnv('SonarServer') {
-            	sh "${scannerHome}sonar-scanner.bat \
+            	bat "${scannerHome}sonar-scanner.bat \
 		    -Dsonar.projectKey=MARFERJ \
 		    -Dsonar.sources=. \
 		    -Dsonar.host.url=http://ses000a108259:9000"
